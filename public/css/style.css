@@ -1,0 +1,162 @@
+.content-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feint-text, .article-snippet {
+    color: grey;
+    font-family: "Liberation Sans", sans-serif;
+    font-size: 12pt;
+}
+
+.article-snippet {
+    display: inline-block;
+    max-height: 4.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    padding:0;
+    margin: 0;
+    line-height: 1.5rem;
+}
+
+.article-heading {
+    padding: 0;
+    margin: 0;
+
+    font-family: "Noto Sans", sans-serif;
+}
+
+.article-heading a {
+    text-decoration: none;
+    color: maroon;
+}
+
+.article-heading a:hover {
+    text-decoration: underline;
+}
+
+
+h1, .title-input {
+    font-family: Arial, sans-serif;
+    font-size: 36pt;
+    color: navy;
+
+    margin: 10px 0;
+    padding: 0;
+}
+
+.divider {
+    display: inline-block;
+    height: 5px;
+    width: 100%;
+    background: navy;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.vertical.middle, .horizontal.middle {
+    justify-content: center;
+    align-items: center;
+}
+
+.centre {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.fixed-top-left {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+
+.side-by-side {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+}
+
+.button {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+    border: 3px solid black;
+    border-radius: 1rem;
+    padding: 2px 4px;
+    margin: 2px;
+}
+
+.button:hover {
+    border-color: maroon;
+}
+
+.side-by-side .left {
+    flex-grow: 1;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.side-by-side .right {
+    flex-grow: 1;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.bold-blue {
+    font-weight: bold;
+    color: navy;
+}
+
+input {
+    margin: 1rem;
+}
+
+.submit-button {
+    font-size: 14pt;
+}
+
+.admin-area-layout {
+    position: relative;
+}
+
+.side-bar-container {
+    display: flex;
+    position: fixed;
+}
+
+.side-bar {
+    width: 180px;
+}
+
+.admin-panel-content {
+    position: relative;
+    left: 120px;
+}
+
+.admin-article-list {
+    font-family: Arial, sans-serif;
+    font-size: 18pt;
+}
+
+.admin-article-list-item {
+    width: 720px;
+    display: flex;
+}
+
