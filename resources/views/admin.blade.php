@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
     <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
-    <script src="/js/transpile.js" type="module" defer></script>
+
 </head>
 <body>
 <header>
