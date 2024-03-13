@@ -81,16 +81,9 @@ Route::get('/', function () {
     $articlesFromDB = Article::latest()->take(5)->get();
     $articles = [];
     foreach ($articlesFromDB as $articleFromDB) {
-        $match = null;
-        $result = preg_match('@<p>.*?</p>@', $articleFromDB->content, $match);
-        if  ($result == 0) {
-            // This happens when regex above cannot find the first paragraph e.g. the content isn't properly marked
-            // up with tags
-            $firstPara = "<p>Follow the link to read this article...</p>";
-        } else {
-            $firstPara = $match[0];
-        }
-        $firstParaWithClass = str_replace("<p>", '<p class="article-snippet">', $firstPara,);
+        //Extract the first paragraph to be displayed on the home page as a "snippet" of the article
+        $firstPara = substr($articleFromDB->content,0, strpos($articleFromDB->content, "\n\n"));
+        $firstParaWithClass = '<p class="article-snippet">' . $firstPara . "</p>";
         $articles[] = [
             "title" => $articleFromDB->title,
             "id" => $articleFromDB->id,

@@ -24,7 +24,11 @@
         <span class="divider"></span>
     </header>
     <main>
-        {!! $article->content !!}
+        @php
+            $Parsedown = new Parsedown();
+            $htmlContent = $Parsedown->text($article->content);
+        @endphp
+        {!! $htmlContent !!}
     </main>
     <x-cookie-notice/>
     <x-page-footer/>
