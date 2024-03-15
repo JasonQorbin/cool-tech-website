@@ -5,6 +5,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
 use \App\Http\Controllers\ArticleController;
+use \App\Http\Controllers\TagController;
 
 /**
  * Converts the category name stored in the database to a uri slug.
@@ -195,5 +196,7 @@ Route::get('/admin/{mode?}/{id?}', function(?string $mode = null, ?string $id = 
 Route::post('/admin/new-article', [ArticleController::class,'newArticle']);
 
 Route::post('/admin/articles/{id}', [ArticleController::class, 'update']);
+
+Route::post('/admin/tags/', [TagController::class, 'update']);
 
 require __DIR__.'/auth.php';
