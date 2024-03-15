@@ -24,7 +24,7 @@
     <div class="side-bar-container">
         <nav class="vertical side-bar">
             <a class="button" href="/admin/articles">Articles</a>
-            <a class="button" href="/admin/articles">Categories</a>
+            <a class="button" href="/admin/categories">Categories</a>
             <a class="button" href="/admin/tags">Tags</a>
             <a class="button" href="/admin/users">Users</a>
         </nav>
@@ -39,7 +39,7 @@
         @elseif($mode == "tags")
             <x-admin-tag-list :allTags="$allTags"/>
         @elseif($mode == "categories")
-            <x-admin-category-list :categories="$categories"/>
+            <x-admin-category-list :allCategories="$allCategories"/>
         @endif
     </main>
 </div>

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use \App\Http\Controllers\ArticleController;
 use \App\Http\Controllers\TagController;
+use \App\Http\Controllers\CategoryController;
 
 /**
  * Converts the category name stored in the database to a uri slug.
@@ -210,6 +211,9 @@ Route::post('/admin/articles', [ArticleController::class, 'update']);
 
 //This route handles adding or deleting tags
 Route::post('/admin/tags', [TagController::class, 'update']);
+
+//This route handles adding or deleting categories
+Route::post('/admin/categories', [CategoryController::class, 'update']);
 
 //Laravel Breeze authentication methods
 require __DIR__.'/auth.php';
