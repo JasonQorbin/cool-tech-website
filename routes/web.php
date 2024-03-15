@@ -97,6 +97,7 @@ Route::get('/', function () {
     return view('home', ['articles' => $articles]);
 });
 
+//Displays search results when searching for articles
 Route::get('/article', function() {
     if ($_GET['term'] != null) {
 
@@ -119,6 +120,7 @@ Route::get('/article', function() {
 
 });
 
+//Reading view for the given article id
 Route::get('/article/{id}', function($id) {
     $article = Article::find($id);
     if ($article == null) {
@@ -128,6 +130,7 @@ Route::get('/article/{id}', function($id) {
     }
 });
 
+//The search screen redirects here when searching for a category with the input from the user as a query string
 Route::get('/category', function() {
     if ($_GET['term'] != null) {
         return getCategoryViewFromSlug(getSlugFromName($_GET['term']));
@@ -136,10 +139,12 @@ Route::get('/category', function() {
     }
 });
 
+//Displays all categories
 Route::get('/category/{slug}', function($slug) {
     return getCategoryViewFromSlug($slug);
 });
 
+//The search screen redirects here when searching for a tag with the input from the user as a query string
 Route::get('/tag', function() {
     if ($_GET['term'] != null) {
         return getTagViewFromSlug(getSlugFromName($_GET['term']));
@@ -148,6 +153,7 @@ Route::get('/tag', function() {
     }
 });
 
+//Displays articles with the given tag
 Route::get('/tag/{slug}', function($slug) {
     return getTagViewFromSlug($slug);
 });
@@ -164,14 +170,17 @@ Route::get('/terms', function() {
     return view('terms');
 });
 
+//The log in screen
 Route::get('/login', function(){
     return view('login');
 });
 
+//For registering a new user.
 Route::get('/register', function(){
     return view('register');
 });
 
+//This route displays the writing panel for an existing article
 Route::get('/admin/{mode?}/{id?}', function(?string $mode = null, ?string $id = null){
 
     $data = [
@@ -193,10 +202,14 @@ Route::get('/admin/{mode?}/{id?}', function(?string $mode = null, ?string $id = 
     return view('admin', $data);
 })->where(['mode' => '(articles|users|tags|categories)']);
 
-Route::post('/admin/new-article', [ArticleController::class,'newArticle']);
-
+//This route handles adding a new article or deleting an existing one.
 Route::post('/admin/articles/{id}', [ArticleController::class, 'update']);
 
-Route::post('/admin/tags/', [TagController::class, 'update']);
+//This route handles adding a new article or deleting an existing one.
+Route::post('/admin/articles', [ArticleController::class, 'update']);
 
+//This route handles adding or deleting tags
+Route::post('/admin/tags', [TagController::class, 'update']);
+
+//Laravel Breeze authentication methods
 require __DIR__.'/auth.php';

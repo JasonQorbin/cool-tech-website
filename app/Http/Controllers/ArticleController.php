@@ -14,20 +14,20 @@ class ArticleController extends Controller
     /**
      * Creates a new article and redirects the user to the editing page for that new article.
      */
-    public function newArticle() {
+    private function newArticle() {
         $newArticle = Article::create([
             'title' => 'Untitled',
             'content' => '',
             'category_name' => Category::UNASSIGNED,
         ]);
         $newArticle->refresh();
-        return redirect('/admin/articles/' . $newArticle->id);
+        return $newArticle;
     }
 
-    public function update(Request $request, string $id) {
+    private function edit($input) {
 
+        $id = $input['article-id'];
         $article = Article::find($id);
-        $input = $request->input();
 
         //Check if a tag-article combination exists and insert it if not
         //Otherwise, do nothing because the third parameter is not specified.
@@ -72,5 +72,47 @@ class ArticleController extends Controller
                 'allTags' => Tag::all()
             ]
         );
+    }
+
+    private function delete(Request $request) {
+        $input = $request->input();
+
+        $articleToDelete = Article::find($input['article-id']);
+
+        if ($articleToDelete) {
+
+            //First delete references to any associated tags
+            DB::table('article_tag_joins')->where('article_id', $articleToDelete->id)->delete();
+
+            //Delete the article
+            $articleToDelete->delete();
+        }
+    }
+
+    public function update(Request $request) {
+        $input = $request->input();
+
+        switch ($input['action']) {
+            case 'add':
+                $newArticle = $this->newArticle($request);
+                return redirect('/admin/articles/' . $newArticle->id);
+
+            case 'edit':
+                $this->edit($input);
+                return redirect('/admin/articles/' . $input['article-id']);
+            case 'delete':
+                $this->delete($request);
+                break;
+        }
+
+        $data = [
+            'mode' => 'articles',
+            'allCategories' => Category::all(),
+            'allTags' => Tag::all(),
+            'allArticles' => Article::all(),
+            'id' => null
+        ];
+
+        return view('admin', $data);
     }
 }

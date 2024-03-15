@@ -1,7 +1,9 @@
 <div>
     <form id="editor-form" class="vertical" action="/admin/articles/{{$articleToEdit->id}}" method="post">
         {{ csrf_field() }}
-        <span><input id="save-button" class="submit-button" type="submit" value="Save Changes"></span>
+        <input type="hidden" name="action" value="edit">
+        <input type="hidden" name="article-id" value="{{$articleToEdit->id}}">
+        <span><button id="save-button" class="submit-button" type="submit" name="action" value="edit">Save Changes</button></span>
 
         <label for="article-title" class="bold-blue">Title:</label>
         <input class="title-input" type="text" name="article-title" id="article-title" value="{{$articleToEdit->title}}">
@@ -45,13 +47,18 @@
         <textarea id="article-content-editor" name="article-content">{!! $articleToEdit->content !!}</textarea>
         <script>
             {{-- This script replaces the textarea above with a markdown editor  --}}
-
+            {{-- Source: EasyMDE project on GitHub: https://github.com/Ionaru/easy-markdown-editor --}}
             const easyMDE = new EasyMDE({
                 element: document.getElementById('article-content-editor')
             });
         </script>
     </form>
+    {{-- This form is placed here because you can't have nested html forms.
+    This is the form that responds to the Add Tag and Delete Tag buttons above--}}
     <form id="tag-update-form" action="/admin/articles/{{$articleToEdit->id}}" method="post">
         {{ csrf_field() }}
+        {{-- This hiden input causes the correct controller function to be called to update the tags --}}
+        <input type="hidden" name="action" value="edit">
+        <input type="hidden" name="article-id" value="{{$articleToEdit->id}}">
     </form>
 </div>

@@ -1,7 +1,9 @@
 <div class="admin-article-list">
-    <form action="/admin/new-article" method="post">
+    <h2>Edit Articles</h2>
+    <span class="divider"></span>
+    <form action="/admin/articles" method="post">
         {{ csrf_field() }}
-        <button class="button" type="submit">New Article</button>
+        <button class="button" type="submit" name="action" value="add">New Article</button>
     </form>
     <table class="admin-list-table">
         <tr>
@@ -18,8 +20,14 @@
             <td>{{$article->category_name}}</td>
             <td>{{$article->updated_at}}</td>
             <td>{{$article->created_at}}</td>
-            <td><a href="/admin/articles/{{$article->id}}" class="button">Edit</a></td>
-            <td><a class="button">Delete</a></td>
+            <td><a class="button" type="submit" href="/admin/articles/{{$article->id}}">Edit</a></td>
+            <td>
+                <form action="/admin/articles" method="post">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="article-id" value="{{$article->id}}">
+                    <button class="button" type="submit" name="action" value="delete">Delete</button>
+                </form>
+            </td>
         </tr>
     @endforeach
     </table>

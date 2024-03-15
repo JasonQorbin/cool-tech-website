@@ -25,7 +25,7 @@
         <nav class="vertical side-bar">
             <a class="button" href="/admin/articles">Articles</a>
             <a class="button" href="/admin/articles">Categories</a>
-            <a class="button" href="/admin/articles">Tags</a>
+            <a class="button" href="/admin/tags">Tags</a>
             <a class="button" href="/admin/users">Users</a>
         </nav>
     </div>
@@ -37,7 +37,7 @@
                 <x-admin-writing-panel :articleToEdit="$articleToEdit" :allCategories="$allCategories" :allTags="$allTags"/>
             @endif
         @elseif($mode == "tags")
-            <x-admin-tag-list :tags="$tags"/>
+            <x-admin-tag-list :allTags="$allTags"/>
         @elseif($mode == "categories")
             <x-admin-category-list :categories="$categories"/>
         @endif
