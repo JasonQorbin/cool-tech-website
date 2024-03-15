@@ -11,7 +11,7 @@ class AdminWritingPanel extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public $articleToEdit)
+    public function __construct(public $articleToEdit, public $allCategories, public $allTags)
     {
         //
     }

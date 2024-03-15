@@ -87,7 +87,6 @@ h1, .title-input {
 .side-by-side {
     display: flex;
     justify-content: center;
-    align-items: stretch;
     width: 100%;
 }
 
@@ -106,14 +105,14 @@ h1, .title-input {
 }
 
 .side-by-side .left {
-    flex-grow: 1;
+    width: 50%;
     display:flex;
     flex-direction: row;
     justify-content: flex-start;
 }
 
 .side-by-side .right {
-    flex-grow: 1;
+    width: 50%;
     display:flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -147,7 +146,8 @@ input {
 
 .admin-panel-content {
     position: relative;
-    left: 120px;
+    left: 180px;
+    max-width: 1260px;
 }
 
 .admin-article-list {
@@ -155,8 +155,13 @@ input {
     font-size: 18pt;
 }
 
-.admin-article-list-item {
-    width: 720px;
-    display: flex;
+.admin-list-table {
+    border-collapse: collapse;
+    margin: 10px;
 }
 
+.admin-list-table, .admin-list-table td, .admin-list-table th {
+    border: 1px solid navy;
+    font-size: 12pt;
+    padding: 6px;
+}

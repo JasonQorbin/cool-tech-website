@@ -1,15 +1,26 @@
 <div class="admin-article-list">
-    <div>
-        <span class="block-button">New Article</span>
-    </div>
+    <form action="/admin/new-article" method="post">
+        {{ csrf_field() }}
+        <button class="button" type="submit">New Article</button>
+    </form>
+    <table class="admin-list-table">
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Last Updated</th>
+            <th>Created</th>
+            <th></th>
+            <th></th>
+        </tr>
     @foreach($articles as $article)
-        <div class="admin-article-list-item side-by-side">
-            <span class="admin-article-list-item-title left">{{$article->title}}</span>
-            <div class="right">
-                <a href="/admin/articles/{{$article->id}}" class="button">Edit</a>
-                <span>|</span>
-                <a class="button">Delete</a>
-            </div>
-        </div>
+        <tr>
+            <td>{{$article->title}}</td>
+            <td>{{$article->category_name}}</td>
+            <td>{{$article->updated_at}}</td>
+            <td>{{$article->created_at}}</td>
+            <td><a href="/admin/articles/{{$article->id}}" class="button">Edit</a></td>
+            <td><a class="button">Delete</a></td>
+        </tr>
     @endforeach
+    </table>
 </div>

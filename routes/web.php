@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Article;
+use App\Models\Category;
+use App\Models\Tag;
+use \App\Http\Controllers\ArticleController;
 
 /**
  * Converts the category name stored in the database to a uri slug.
@@ -82,7 +85,7 @@ Route::get('/', function () {
     $articles = [];
     foreach ($articlesFromDB as $articleFromDB) {
         //Extract the first paragraph to be displayed on the home page as a "snippet" of the article
-        $firstPara = substr($articleFromDB->content,0, strpos($articleFromDB->content, "\n\n"));
+        $firstPara = substr($articleFromDB->content,0, strpos($articleFromDB->content, "\n"));
         $firstParaWithClass = '<p class="article-snippet">' . $firstPara . "</p>";
         $articles[] = [
             "title" => $articleFromDB->title,
@@ -172,7 +175,9 @@ Route::get('/admin/{mode?}/{id?}', function(?string $mode = null, ?string $id = 
 
     $data = [
         'mode' => $mode,
-        'id' => $id
+        'id' => $id,
+        'allCategories' => Category::all(),
+        'allTags' => Tag::all()
     ];
 
 
@@ -185,6 +190,10 @@ Route::get('/admin/{mode?}/{id?}', function(?string $mode = null, ?string $id = 
     }
 
     return view('admin', $data);
-});
+})->where(['mode' => '(articles|users|tags|categories)']);
+
+Route::post('/admin/new-article', [ArticleController::class,'newArticle']);
+
+Route::post('/admin/articles/{id}', [ArticleController::class, 'update']);
 
 require __DIR__.'/auth.php';

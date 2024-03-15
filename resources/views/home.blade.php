@@ -3,7 +3,7 @@
 <head>
     <title>Cool Tech | Home</title>
     <meta charset="UTF-8">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
 </head>
 <body>
 <div class="content-wrap">

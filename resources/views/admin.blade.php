@@ -23,8 +23,10 @@
 <div class="admin-area-layout">
     <div class="side-bar-container">
         <nav class="vertical side-bar">
-            <a href="/admin/articles">Articles</a>
-            <a href="/admin/users">Users</a>
+            <a class="button" href="/admin/articles">Articles</a>
+            <a class="button" href="/admin/articles">Categories</a>
+            <a class="button" href="/admin/articles">Tags</a>
+            <a class="button" href="/admin/users">Users</a>
         </nav>
     </div>
     <main class="admin-panel-content">
@@ -32,7 +34,7 @@
             @if($id == null)
                 <x-admin-article-list :articles="$allArticles"/>
             @else
-                <x-admin-writing-panel :articleToEdit="$articleToEdit"/>
+                <x-admin-writing-panel :articleToEdit="$articleToEdit" :allCategories="$allCategories" :allTags="$allTags"/>
             @endif
         @elseif($mode == "tags")
             <x-admin-tag-list :tags="$tags"/>
