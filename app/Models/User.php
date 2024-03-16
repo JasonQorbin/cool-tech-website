@@ -42,4 +42,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Helper function to test is the user has admin privileges
+     *
+     * @return bool true if the user has the admin role
+     */
+    public function isAdmin() {
+        return $this->role == 'admin';
+    }
+
+    /**
+     * Helper function to test is the user has writer privileges
+     *
+     * @return bool true if the user has the writer role
+     */
+    public function isWriter() {
+        return $this->role == 'writer';
+    }
 }
