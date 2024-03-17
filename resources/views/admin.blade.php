@@ -30,7 +30,7 @@
         </nav>
     </div>
     <main class="admin-panel-content">
-        @if($mode != null && $mode == 'articles')
+        @if($mode == 'articles')
             @if($id == null)
                 <x-admin-article-list :articles="$allArticles"/>
             @else
@@ -40,6 +40,8 @@
             <x-admin-tag-list :allTags="$allTags"/>
         @elseif($mode == "categories")
             <x-admin-category-list :allCategories="$allCategories"/>
+        @elseif($mode == "users")
+            <x-admin-user-list :allUsers="$allUsers" :currentUserIsAdmin="$adminLoggedIn" :numAdmins="$numberOfAdmins"/>
         @endif
     </main>
 </div>

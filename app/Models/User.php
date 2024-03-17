@@ -60,4 +60,13 @@ class User extends Authenticatable
     public function isWriter() {
         return $this->role == 'writer';
     }
+
+    /**
+     * Helper function to test is the user's email has been verified
+     *
+     * @return bool true if the user has verified their email
+     */
+    public function isEmailVerified() {
+        return $this->email_verified_at != null;
+    }
 }

@@ -1,12 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\User;
 use \App\Http\Controllers\ArticleController;
 use \App\Http\Controllers\TagController;
 use \App\Http\Controllers\CategoryController;
+use \App\Http\Controllers\UserController;
 
 /**
  * Converts the category name stored in the database to a uri slug.
@@ -183,12 +187,18 @@ Route::get('/register', function(){
 
 //This route displays the writing panel for an existing article
 Route::get('/admin/{mode?}/{id?}', function(?string $mode = null, ?string $id = null){
+    $currentUserIsAdmin = User::find(Auth::id())->isAdmin();
+    $categories = Category::all();
+    $tags = Tag::all();
+    $users = User::all();
+    $numberOfAdmins = DB::table('users')->where('role', 'admin')->count();
 
     $data = [
         'mode' => $mode,
         'id' => $id,
-        'allCategories' => Category::all(),
-        'allTags' => Tag::all()
+        'allCategories' => $categories,
+        'allTags' => $tags,
+        'adminLoggedIn' => $currentUserIsAdmin
     ];
 
 
@@ -198,6 +208,11 @@ Route::get('/admin/{mode?}/{id?}', function(?string $mode = null, ?string $id = 
         } else {
             $data['allArticles'] = Article::all();
         }
+    }
+
+    if ($mode == 'users') {
+        $data['allUsers'] = $users;
+        $data['numberOfAdmins'] = $numberOfAdmins;
     }
 
     return view('admin', $data);
@@ -214,6 +229,9 @@ Route::post('/admin/tags', [TagController::class, 'update']);
 
 //This route handles adding or deleting categories
 Route::post('/admin/categories', [CategoryController::class, 'update']);
+
+//This route handles modifying users
+Route::post('/admin/users', [UserController::class, 'updateUserRole']);
 
 //Laravel Breeze authentication methods
 require __DIR__.'/auth.php';

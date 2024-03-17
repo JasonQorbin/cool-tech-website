@@ -165,3 +165,7 @@ input {
     font-size: 12pt;
     padding: 6px;
 }
+
+.admin-list-table th {
+    min-width: 75px;
+}
