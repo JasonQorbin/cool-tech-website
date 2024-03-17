@@ -15,7 +15,7 @@ class AdminUserList extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public $allUsers, public $currentUserIsAdmin, public $numAdmins)
+    public function __construct(public $allUsers, public $numAdmins)
     {
         //
     }

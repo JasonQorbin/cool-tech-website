@@ -74,13 +74,12 @@ class UserController extends Controller
              case 'delete':
                  $this->deleteUserInDB($input['user-id-to-change']);
          }
-        $currentUserIsAdmin = User::find(Auth::id())->isAdmin();
+
         $numberOfAdmins = DB::table('users')->where('role', 'admin')->count();
 
         $data = [
             'mode' => 'users',
             'allUsers' => User::all(),
-            'adminLoggedIn' => $currentUserIsAdmin,
             'numberOfAdmins' => $numberOfAdmins
         ];
 

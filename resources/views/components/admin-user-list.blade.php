@@ -45,7 +45,7 @@
                     @else
                     <td></td>
                     @endif
-                    @if($currentUserIsAdmin && (!$user->isAdmin() || $numAdmins > 1))
+                    @if(!$user->isAdmin() || $numAdmins > 1)
                     <td>
                         <form action="/admin/users" method="post">
                             {{csrf_field()}}

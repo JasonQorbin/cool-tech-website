@@ -41,7 +41,7 @@
         @elseif($mode == "categories")
             <x-admin-category-list :allCategories="$allCategories"/>
         @elseif($mode == "users")
-            <x-admin-user-list :allUsers="$allUsers" :currentUserIsAdmin="$adminLoggedIn" :numAdmins="$numberOfAdmins"/>
+            <x-admin-user-list :allUsers="$allUsers" :numAdmins="$numberOfAdmins"/>
         @endif
     </main>
 </div>

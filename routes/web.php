@@ -11,6 +11,9 @@ use \App\Http\Controllers\ArticleController;
 use \App\Http\Controllers\TagController;
 use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\UserController;
+use App\Http\Middleware\EnsureNotNormalUser;
+use App\Http\Middleware\EnsureAdminUserForUserPage;
+use App\Http\Middleware\EnsureAdminUser;
 
 /**
  * Converts the category name stored in the database to a uri slug.
@@ -100,7 +103,7 @@ Route::get('/', function () {
         ];
     }
     return view('home', ['articles' => $articles]);
-});
+})->name('home');
 
 //Displays search results when searching for articles
 Route::get('/article', function() {
@@ -178,12 +181,12 @@ Route::get('/terms', function() {
 //The log in screen
 Route::get('/login', function(){
     return view('login');
-});
+})->name('login');
 
 //For registering a new user.
 Route::get('/register', function(){
     return view('register');
-});
+})->name('register');
 
 //This route displays the writing panel for an existing article
 Route::get('/admin/{mode?}/{id?}', function(?string $mode = null, ?string $id = null){
@@ -197,8 +200,7 @@ Route::get('/admin/{mode?}/{id?}', function(?string $mode = null, ?string $id = 
         'mode' => $mode,
         'id' => $id,
         'allCategories' => $categories,
-        'allTags' => $tags,
-        'adminLoggedIn' => $currentUserIsAdmin
+        'allTags' => $tags
     ];
 
 
@@ -216,22 +218,36 @@ Route::get('/admin/{mode?}/{id?}', function(?string $mode = null, ?string $id = 
     }
 
     return view('admin', $data);
-})->where(['mode' => '(articles|users|tags|categories)']);
+})->where(['mode' => '(articles|users|tags|categories)'])
+    ->middleware('auth')
+    ->middleware(EnsureNotNormalUser::class)
+    ->middleware(EnsureAdminUserForUserPage::class)
+    ->name('admin');
 
 //This route handles adding a new article or deleting an existing one.
-Route::post('/admin/articles/{id}', [ArticleController::class, 'update']);
+Route::post('/admin/articles/{id}', [ArticleController::class, 'update'])
+    ->middleware('auth')
+    ->middleware(EnsureNotNormalUser::class);
 
 //This route handles adding a new article or deleting an existing one.
-Route::post('/admin/articles', [ArticleController::class, 'update']);
+Route::post('/admin/articles', [ArticleController::class, 'update'])
+    ->middleware('auth')
+    ->middleware(EnsureNotNormalUser::class);
 
 //This route handles adding or deleting tags
-Route::post('/admin/tags', [TagController::class, 'update']);
+Route::post('/admin/tags', [TagController::class, 'update'])
+    ->middleware('auth')
+    ->middleware(EnsureNotNormalUser::class);
 
 //This route handles adding or deleting categories
-Route::post('/admin/categories', [CategoryController::class, 'update']);
+Route::post('/admin/categories', [CategoryController::class, 'update'])
+    ->middleware('auth')
+    ->middleware(EnsureNotNormalUser::class);
 
 //This route handles modifying users
-Route::post('/admin/users', [UserController::class, 'updateUserRole']);
+Route::post('/admin/users', [UserController::class, 'updateUserRole'])
+    ->middleware('auth')
+    ->middleware(EnsureAdminUser::class);
 
 //Laravel Breeze authentication methods
 require __DIR__.'/auth.php';
