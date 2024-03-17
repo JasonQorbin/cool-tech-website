@@ -19,7 +19,7 @@ class Article extends Model
     ];
 
     /**
-     * Mass-asignable columns
+     * Mass-assignable columns
      *
      * @var string[] database columns
      */

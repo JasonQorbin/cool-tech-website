@@ -14,6 +14,11 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
+    /**
+     * Count the number of articles assigned to this category in the database.
+     *
+     * @return int The number of articles.
+     */
     public function associations() {
         return DB::table('articles')->where('category_name', $this->name)->count();
     }

@@ -11,7 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 class EnsureAdminUserForUserPage
 {
     /**
-     * Handle an incoming request.
+     * If accessing the Users view, check if the authenticated user has the 'admin' role and redirect to the base
+     * admin view if not.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */

@@ -10,14 +10,24 @@ use App\Models\Article;
 use App\Models\User;
 use App\Models\Tag;
 
-//Adds a few articles to the database
+/**
+ * Adds a few articles to the database. All the articles are identical lorem ipsum text, in markdown format.
+ *
+ */
 class SampleArticleAndTagSeeder extends Seeder
 {
     private string $loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum nibh sagittis, pulvinar lacus id, congue neque. Etiam dignissim a elit vitae varius. Pellentesque blandit eleifend magna, at blandit nunc imperdiet pulvinar. Etiam euismod aliquam finibus. Praesent et justo eros. Sed imperdiet mattis elit vel fringilla. Praesent posuere ipsum ac diam iaculis ultricies. Donec vestibulum in justo vitae viverra. Morbi id purus elementum, pretium sem sit amet, euismod mi. Donec euismod ante sit amet ante efficitur, eu auctor tortor cursus. Vestibulum fermentum arcu felis, vitae bibendum urna suscipit et. Donec non mi lacinia, hendrerit nibh ut, dignissim metus. Curabitur a faucibus lectus, eget cursus tortor. Sed non cursus ipsum, id porta risus.
 
+## Sub-heading
+
 Morbi convallis suscipit diam, eu aliquet justo vestibulum quis. Fusce aliquam ante efficitur suscipit mollis. Donec mattis urna vel ipsum maximus feugiat. Morbi congue augue sit amet enim semper, a malesuada erat imperdiet. Phasellus maximus quam vel molestie tempus. Sed nec lacinia ante. Fusce a est ac tellus lacinia placerat. Aenean egestas eget lacus vitae lobortis. Curabitur posuere, ligula in fringilla gravida, ante lectus accumsan est, vitae iaculis est tellus in eros. Integer aliquet semper lorem, non pellentesque sapien ornare eu. Pellentesque odio elit, eleifend vehicula euismod eget, congue ornare nisi.
 
+- List item 1
+- List item 2
+
 Ut faucibus vitae ipsum mattis scelerisque. Donec magna orci, rhoncus eu commodo vitae, cursus ac purus. Donec dignissim pellentesque massa id posuere. Nam tortor nibh, tincidunt vel commodo eget, viverra et lorem. Sed nec ultrices ipsum, et pellentesque erat. Aenean posuere sollicitudin urna in dictum. In sagittis ullamcorper venenatis. Sed egestas, nisl vel sollicitudin laoreet, nunc augue mattis risus, quis pretium nisi enim nec mi. Vestibulum non ipsum ligula. Phasellus ut aliquam lacus, non commodo tellus.
+
+### Tertiary heading
 
 Ut tincidunt eros ac mi tristique sodales. Nulla ac sapien mauris. Pellentesque at turpis ac elit aliquam volutpat eget id diam. Vivamus rutrum tempor felis sit amet ultricies. Nunc sollicitudin vitae urna ornare mattis. Ut id magna maximus, faucibus est nec, laoreet lectus. Mauris consequat lacinia turpis quis finibus. Nullam et mi vitae lacus elementum maximus. Phasellus vitae hendrerit felis. Proin et diam eu urna varius vehicula. Morbi imperdiet, velit sed accumsan scelerisque, nibh turpis pretium nibh, eget porta neque sapien eget urna. Mauris ullamcorper, leo vehicula gravida sagittis, ligula ante pretium urna, a pharetra quam lectus ultrices lectus. Integer eget urna nulla. Nulla lorem sem, scelerisque id sagittis et, lobortis sed libero. Proin eget lectus nisi.
 

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class EnsureNotNormalUser
 {
     /**
-     * Handle an incoming request.
+     * Check if the authenticated user has the 'writer' or 'admin' role and redirect to the home page if not.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */

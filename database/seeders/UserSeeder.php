@@ -7,6 +7,10 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Adds 5 normal users, 3 writers and 2 admin users to the databases. All users have a password of 'password', a name
+ * in the form 'Writer2' and an email in the form 'writer2@example.com'.
+ */
 class UserSeeder extends Seeder
 {
 
