@@ -26,7 +26,9 @@
             <a class="button" href="/admin/articles">Articles</a>
             <a class="button" href="/admin/categories">Categories</a>
             <a class="button" href="/admin/tags">Tags</a>
+            @if (Auth::user()->role == 'admin')
             <a class="button" href="/admin/users">Users</a>
+            @endif
         </nav>
     </div>
     <main class="admin-panel-content">

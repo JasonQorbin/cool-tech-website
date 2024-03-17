@@ -11,11 +11,15 @@
         <div class="side-by-side">
             <div class="left"><h1>Cool Tech</h1></div>
             @auth
-                <div class="right">
-                    @if (Auth::user()->role != "user")
-                        <a href="/admin">Admin Panel</a><span>|</span>
-                    @endif
-                    <a href="/logout">Logout</a>
+                <div class="right compact-text">
+                    <div class="right-aligned">
+                        @if (Auth::user()->role != "user")
+                            <p class="padding-below"><a href="/admin">Admin Panel</a></p>
+                        @endif
+                        <p>Hi, {{Auth::user()->name}}!</p>
+                        <p>Is this not you? ---> <a href="/logout">Logout</a></p>
+
+                    </div>
                 </div>
             @else
                 <div class="right"><a href="/login">Login</a></div>

@@ -169,3 +169,16 @@ input {
 .admin-list-table th {
     min-width: 75px;
 }
+
+.right-aligned {
+    text-align: right;
+}
+
+.compact-text p {
+    line-height: 1rem;
+    margin: 0;
+}
+
+.padding-below {
+    padding-bottom: 1rem;
+}
